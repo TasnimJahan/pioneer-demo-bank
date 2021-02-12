@@ -88,20 +88,23 @@
       //deposit button event handler
       const depositButton = document.getElementById("addDeposit");
       depositButton.addEventListener("click", function () {
-        /* const depositAmount = document.getElementById("depositAmount").value;
-         const depositNumber = parseFloat(depositAmount);*/
+        const depositAmount = document.getElementById("depositAmount").value;
 
         const depositNumber = getInputNumber("depositAmount");
+        if (
+          depositAmount === null ||
+          depositAmount === "" ||
+          depositAmount === " " ||
+          depositAmount === NaN ||
+          depositAmount < 0
+        ) {
+          alert("Please enter right amount");
+        } else {
+          updateSpanText("currentDeposit", depositNumber);
+          updateSpanText("currentBalance", depositNumber);
 
-        /*    const currentDeposit= document.getElementById("currentDeposit").innerText;
-          const currentDepositNumber = parseFloat(currentDeposit);
-          const totalDeposit = depositNumber+currentDepositNumber;
-          document.getElementById("currentDeposit").innerText= totalDeposit;  */
-
-        updateSpanText("currentDeposit", depositNumber);
-        updateSpanText("currentBalance", depositNumber);
-
-        document.getElementById("depositAmount").value = "";
+          document.getElementById("depositAmount").value = "";
+        }
       });
 
       //withdraw button event handler
